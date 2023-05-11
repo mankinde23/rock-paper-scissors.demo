@@ -1,4 +1,14 @@
-
+const score = {
+    wins:0,
+    losses:0,
+    ties:0
+}
+const resetScore = document.getElementById("reset-score")
+resetScore.onclick=function(){
+    score.wins=0;
+    score.losses=0;
+    score.ties=0;
+}
 //ROCK 
 const myButton1 = document.getElementById("rock")
 myButton1.onclick = function(){
@@ -19,11 +29,20 @@ myButton1.onclick = function(){
     if(computerMove1==='rock'){
         result1='tie'
     }else if(computerMove1==='paper'){
-        result1='You lose '
+        result1='You lose'
     }else if(computerMove1==='scissors'){
         result1='You win'
     }
-    alert(`You picked rock.Computer picked ${computerMove1}. ${result1}`)
+    //score
+    if(result1 === 'You win'){
+        score.wins +=1
+    }else if(result1 ==='You lose'){
+        score.losses += 1
+    }else if(result1 ==='tie'){
+        score.ties += 1
+    }
+    alert(`You picked rock.Computer picked ${computerMove1}. ${result1}
+Wins:${score.wins},Losses:${score.losses},Ties:${score.ties}`)
 
 }
 
@@ -50,7 +69,18 @@ myButton2.onclick= function(){
     }else if(computerMove2==='rock'){
         result2='You win'
     }
-    alert(`You picked paper.Computer picked ${computerMove2}. ${result2}`)
+
+    //SCORE
+    if(result2 === 'You win'){
+        score.wins +=1
+    }else if(result2 ==='You lose'){
+        score.losses += 1
+    }else if(result2 ==='tie'){
+        score.ties += 1
+    }
+
+    alert(`You picked paper.Computer picked ${computerMove2}. ${result2}
+ Wins:${score.wins},Losses:${score.losses},Ties:${score.ties}`)
 
 }
 //SCISSORS
@@ -76,6 +106,15 @@ myButton3.onclick= function(){
     }else if(computerMove3==='paper'){
         result3='You win'
     }
-    alert(`You picked scissors.Computer picked ${computerMove3}. ${result3}`)
+    //SCORE
+    if(result3 === 'You win'){
+        score.wins +=1
+    }else if(result3 ==='You lose'){
+        score.losses += 1
+    }else if(result3 ==='tie'){
+        score.ties += 1
+    }
+    alert(`You picked scissors.Computer picked ${computerMove3}. ${result3}
+Wins:${score.wins},Losses:${score.losses},Ties:${score.ties}`)
 
 }
