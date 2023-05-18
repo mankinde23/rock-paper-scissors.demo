@@ -1,14 +1,18 @@
-const score = {
+let score = JSON.parse(localStorage.getItem('score'))
+if (score===null){
+   score = {
     wins:0,
     losses:0,
     ties:0
+}  
 }
 const resetScore = document.getElementById("reset-score")
-resetScore.onclick=function(){
+console.log(resetScore.onclick=function(){
     score.wins=0;
     score.losses=0;
     score.ties=0;
-}
+    localStorage.removeItem('score')
+})
 //ROCK 
 const myButton1 = document.getElementById("rock")
 myButton1.onclick = function(){
@@ -41,6 +45,7 @@ myButton1.onclick = function(){
     }else if(result1 ==='tie'){
         score.ties += 1
     }
+    localStorage.setItem('score',JSON.stringify(score))
     alert(`You picked rock.Computer picked ${computerMove1}. ${result1}
 Wins:${score.wins},Losses:${score.losses},Ties:${score.ties}`)
 
@@ -78,6 +83,7 @@ myButton2.onclick= function(){
     }else if(result2 ==='tie'){
         score.ties += 1
     }
+    localStorage.setItem('score',JSON.stringify(score))
 
     alert(`You picked paper.Computer picked ${computerMove2}. ${result2}
  Wins:${score.wins},Losses:${score.losses},Ties:${score.ties}`)
@@ -114,6 +120,7 @@ myButton3.onclick= function(){
     }else if(result3 ==='tie'){
         score.ties += 1
     }
+    localStorage.setItem('score',JSON.stringify(score))
     alert(`You picked scissors.Computer picked ${computerMove3}. ${result3}
 Wins:${score.wins},Losses:${score.losses},Ties:${score.ties}`)
 
