@@ -1,17 +1,19 @@
-let score = JSON.parse(localStorage.getItem('score'))
-if (score===null){
-   score = {
-    wins:0,
-    losses:0,
-    ties:0
-}  
-}
+let score = JSON.parse(localStorage.getItem('score')) ||
+   {
+     wins:0,
+     losses:0,
+     ties:0
+ }  
+ /* document.querySelector('#js-score').
+ innerHTML= `Wins: ${score.wins}, Losses:${score.losses}, Ties: ${score.ties}`*/
+
 const resetScore = document.getElementById("reset-score")
 console.log(resetScore.onclick=function(){
     score.wins=0;
     score.losses=0;
     score.ties=0;
     localStorage.removeItem('score')
+    updateScoreElement()
 })
 //ROCK 
 const myButton1 = document.getElementById("rock")
@@ -46,8 +48,13 @@ myButton1.onclick = function(){
         score.ties += 1
     }
     localStorage.setItem('score',JSON.stringify(score))
-    alert(`You picked rock.Computer picked ${computerMove1}. ${result1}
-Wins:${score.wins},Losses:${score.losses},Ties:${score.ties}`)
+    updateScoreElement()
+    document.querySelector('#js-result').
+    innerHTML=result1
+
+
+   /* alert(`You picked rock.Computer picked ${computerMove1}. ${result1}
+  Wins:${score.wins},Losses:${score.losses},Ties:${score.ties}`)*/
 
 }
 
@@ -84,9 +91,13 @@ myButton2.onclick= function(){
         score.ties += 1
     }
     localStorage.setItem('score',JSON.stringify(score))
+    updateScoreElement()
+    document.querySelector('#js-result').
+    innerHTML=result2
 
-    alert(`You picked paper.Computer picked ${computerMove2}. ${result2}
- Wins:${score.wins},Losses:${score.losses},Ties:${score.ties}`)
+
+   /* alert(`You picked paper.Computer picked ${computerMove2}. ${result2}
+ Wins:${score.wins},Losses:${score.losses},Ties:${score.ties}`)*/
 
 }
 //SCISSORS
@@ -121,7 +132,18 @@ myButton3.onclick= function(){
         score.ties += 1
     }
     localStorage.setItem('score',JSON.stringify(score))
-    alert(`You picked scissors.Computer picked ${computerMove3}. ${result3}
-Wins:${score.wins},Losses:${score.losses},Ties:${score.ties}`)
+    updateScoreElement()
+    document.querySelector('#js-result').
+    innerHTML=result3
+
+
+
+    /*alert(`You picked scissors.Computer picked ${computerMove3}. ${result3}
+Wins:${score.wins},Losses:${score.losses},Ties:${score.ties}`)*/
 
 }
+function updateScoreElement(){
+    document.querySelector('#js-score').
+    innerHTML= `Wins: ${score.wins}, Losses:${score.losses}, Ties: ${score.ties}`
+}
+
